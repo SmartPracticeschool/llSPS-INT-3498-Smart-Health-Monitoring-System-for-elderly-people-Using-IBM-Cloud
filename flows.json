@@ -1,0 +1,324 @@
+[
+    {
+        "id": "f414bb38.1e3348",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "4a719c53.cc3e34",
+        "type": "inject",
+        "z": "f414bb38.1e3348",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "SMART HEALTH ANALYSIS",
+        "payloadType": "str",
+        "x": 180,
+        "y": 40,
+        "wires": [
+            [
+                "9e2c883e.d4d398"
+            ]
+        ]
+    },
+    {
+        "id": "9e2c883e.d4d398",
+        "type": "ui_text",
+        "z": "f414bb38.1e3348",
+        "group": "6ae45a8e.ba2dc4",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Welcome to",
+        "format": "{{msg.payload}}",
+        "layout": "row-center",
+        "x": 440,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "106de189.50d1ee",
+        "type": "ui_ui_control",
+        "z": "f414bb38.1e3348",
+        "name": "",
+        "events": "all",
+        "x": 860,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "72f129f9.ed1da8",
+        "type": "ui_button",
+        "z": "f414bb38.1e3348",
+        "name": "",
+        "group": "6ae45a8e.ba2dc4",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Go",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "{\"tab\":\"Health Analysis\"}",
+        "payloadType": "json",
+        "topic": "",
+        "x": 610,
+        "y": 40,
+        "wires": [
+            [
+                "106de189.50d1ee"
+            ]
+        ]
+    },
+    {
+        "id": "57300c6c.02ba84",
+        "type": "ibmiot in",
+        "z": "f414bb38.1e3348",
+        "authentication": "apiKey",
+        "apiKey": "4d84bda7.9aa224",
+        "inputType": "evt",
+        "logicalInterface": "",
+        "ruleId": "",
+        "deviceId": "12345678",
+        "applicationId": "",
+        "deviceType": "raspberrypi",
+        "eventType": "+",
+        "commandType": "",
+        "format": "json",
+        "name": "IBM IoT",
+        "service": "registered",
+        "allDevices": "",
+        "allApplications": "",
+        "allDeviceTypes": "",
+        "allLogicalInterfaces": "",
+        "allEvents": true,
+        "allCommands": "",
+        "allFormats": "",
+        "qos": 0,
+        "x": 110,
+        "y": 140,
+        "wires": [
+            [
+                "910d5e6.2c620a",
+                "82d3e5f5.a25b18"
+            ]
+        ]
+    },
+    {
+        "id": "910d5e6.2c620a",
+        "type": "function",
+        "z": "f414bb38.1e3348",
+        "name": "",
+        "func": "global.set('temp',msg.payload.temp);\nmsg.payload=msg.payload.temp;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 440,
+        "y": 140,
+        "wires": [
+            [
+                "14428b7.dd80375"
+            ]
+        ]
+    },
+    {
+        "id": "82d3e5f5.a25b18",
+        "type": "function",
+        "z": "f414bb38.1e3348",
+        "name": "",
+        "func": "global.set('pul',msg.payload.pul);\nmsg.payload=msg.payload.pul;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 380,
+        "y": 200,
+        "wires": [
+            [
+                "6cc2b21c.57bfec"
+            ]
+        ]
+    },
+    {
+        "id": "14428b7.dd80375",
+        "type": "ui_text",
+        "z": "f414bb38.1e3348",
+        "group": "f259dbaa.800468",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Body Temperature",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 640,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "6cc2b21c.57bfec",
+        "type": "ui_text",
+        "z": "f414bb38.1e3348",
+        "group": "f259dbaa.800468",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Pulse",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 540,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "bde2ed62.cb819",
+        "type": "ui_button",
+        "z": "f414bb38.1e3348",
+        "name": "",
+        "group": "11e4c95d.61fc37",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Back",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "{\"tab\":\"Home\"}",
+        "payloadType": "json",
+        "topic": "",
+        "x": 670,
+        "y": 80,
+        "wires": [
+            [
+                "106de189.50d1ee"
+            ]
+        ]
+    },
+    {
+        "id": "abdc28f6.4c6238",
+        "type": "http in",
+        "z": "f414bb38.1e3348",
+        "name": "",
+        "url": "/data",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 200,
+        "y": 280,
+        "wires": [
+            [
+                "f744f10.f85ff1"
+            ]
+        ]
+    },
+    {
+        "id": "2cabce75.fd55d2",
+        "type": "http response",
+        "z": "f414bb38.1e3348",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 580,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "f744f10.f85ff1",
+        "type": "function",
+        "z": "f414bb38.1e3348",
+        "name": "",
+        "func": "msg.payload={'temp':global.get(\"temp\"),'pul':global.get(\"pul\")};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 380,
+        "y": 280,
+        "wires": [
+            [
+                "2cabce75.fd55d2"
+            ]
+        ]
+    },
+    {
+        "id": "6ae45a8e.ba2dc4",
+        "type": "ui_group",
+        "z": "",
+        "name": "Default",
+        "tab": "a89e2e96.9dfd4",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "4d84bda7.9aa224",
+        "type": "ibmiot",
+        "z": "",
+        "name": "",
+        "keepalive": "60",
+        "serverName": "ytissp.messaging.internetofthings.ibmcloud.com",
+        "cleansession": true,
+        "appId": "",
+        "shared": false
+    },
+    {
+        "id": "f259dbaa.800468",
+        "type": "ui_group",
+        "z": "",
+        "name": "Health Data",
+        "tab": "cb64d4e4.717a98",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "11e4c95d.61fc37",
+        "type": "ui_group",
+        "z": "",
+        "name": "Default",
+        "tab": "cb64d4e4.717a98",
+        "order": 1,
+        "disp": false,
+        "width": "2",
+        "collapse": false
+    },
+    {
+        "id": "a89e2e96.9dfd4",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "cb64d4e4.717a98",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Health Analysis",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
